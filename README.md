@@ -47,9 +47,9 @@ databricks_account_id = "<Azure Databricks account ID>"
 1. Login Azure CLI, run `az login --service-principal -u <app-id> -p <password-or-cert> --tenant <tenant-id>`
 1. `cd` to the correct sub-folder first, e.g. `cd ./20231101`
 1. Install terraform providers, run `terraform init`
-1. Check and see if there is anything wrong, run `terraform plan -var-file='<file>.tfvars' -out='<file>.out'`
-1. Deploy the infra, run `terraform apply '<file>.out'`
-1. To remove the whole deployment, run `terraform plan -destroy -var-file='<file>.tfvars' -out='<file-destroy>.out'` and then `terraform apply '<file-destroy>.out'`
+1. Check and see if there is anything wrong, run `terraform plan -var-file='<file>.tfvars' -out='<file>.tfplan'`
+1. Deploy the infra, run `terraform apply '<file>.tfplan'`
+1. To remove the whole deployment, run `terraform plan -destroy -var-file='<file>.tfvars' -out='<file-destroy>.tfplan'` and then `terraform apply '<file-destroy>.tfplan'`
 
 ## Caveats
 In region `eastasia`, there is an issue to create Unity Catalog directly with `terraform`, thus requires manual creation in [Databricks Account page](https://accounts.azuredatabricks.net/data), and then `terraform import -var-file='<file>.tfvars' module.databricks.databricks_metastore.this '<metastore_id>'`
