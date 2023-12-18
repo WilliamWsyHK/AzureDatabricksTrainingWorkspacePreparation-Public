@@ -28,7 +28,7 @@ variable "client_secret" {
   description = "Azure client (app) secret"
 }
 
-variable "databricks_account_id" {
+variable "azure_databricks_account_id" {
   type = string
   sensitive = true
   description = "Azure Databricks account ID"

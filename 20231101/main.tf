@@ -1,12 +1,3 @@
-provider "azurerm" {
-  features {}
-  tenant_id = var.tenant_id
-  subscription_id = var.subscription_id
-  client_id = var.client_id
-  client_secret = var.client_secret
-  skip_provider_registration = true
-}
-
 data "azurerm_client_config" "current" {
 }
 
@@ -54,6 +45,11 @@ module "entra_id" {
 }
 
 module "databricks" {
+  providers = {
+    azurerm = azurerm
+    databricks.accounts = databricks.accounts
+  }
+
   source = "../modules/databricks"
 
   region = var.region
@@ -68,7 +64,7 @@ module "databricks" {
 
   azure_databricks_users = module.entra_id.users
 
-  azure_databricks_account_id = var.databricks_account_id
+  azure_databricks_account_id = var.azure_databricks_account_id
   azure_databricks_metastore_name = local.metastore_name
   azure_databricks_unity_catalog_admin_group_display_name = local.azure_databricks_unity_catalog_admin_group_display_name
   azure_databricks_workspace_naming_prefix = local.azure_databricks_workspace_naming_prefix
