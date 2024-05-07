@@ -6,7 +6,7 @@ data "external" "me" {
 }
 
 locals {
-  training_date = "20231206"
+  training_date = "20231101"
 
   user_csv_path = "users.csv"
   entra_id_student_group_display_name = "Databricks Training Students ${local.training_date}"
@@ -34,7 +34,7 @@ locals {
 }
 
 module "entra_id" {
-  source = "../modules/entra_id"
+  source = "../../modules/entra_id"
 
   tenant_id = var.tenant_id
   client_id = var.client_id
@@ -50,7 +50,7 @@ module "databricks" {
     databricks.accounts = databricks.accounts
   }
 
-  source = "../modules/databricks"
+  source = "../../modules/databricks"
 
   region = var.region
   tenant_id = var.tenant_id
