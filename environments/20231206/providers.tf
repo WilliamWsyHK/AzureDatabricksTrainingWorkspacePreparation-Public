@@ -2,12 +2,15 @@ terraform {
   required_providers {
     azuread = {
       source = "registry.terraform.io/hashicorp/azuread"
+      version = "~> 2.45"
     }
     azurerm = {
       source = "registry.terraform.io/hashicorp/azurerm"
+      version = "~> 3.97"
     }
     databricks = {
       source = "registry.terraform.io/databricks/databricks"
+      version = "~> 1.34"
     }
   }
 }
